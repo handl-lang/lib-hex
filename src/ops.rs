@@ -1,7 +1,6 @@
 use std::sync::Arc;
 
 use handl_platform::{EvalContext, EvalError, Function};
-use handl_lib_encoding::{Encoding, EncodingError};
 use handl_plugin_lib_handl::{OpRegistry, RuntimePredicateChecker};
 use serde_json::Value;
 
@@ -15,32 +14,6 @@ pub const HEX_OPS: &[&str] = &["hex.encode", "hex.decode", "hex.hex"];
 // ---------------------------------------------------------------------------
 // Encoding trait impl (backward compat for plugin-lib-utils)
 // ---------------------------------------------------------------------------
-
-/// Hexadecimal encoding (implements the [`Encoding`] trait for
-/// [`plugin-lib-utils`]'s `EncodingRegistry`).
-#[derive(Debug, Clone, Copy, Default)]
-pub struct Hex;
-
-impl Encoding for Hex {
-    fn encode(&self, value: &Value) -> Result<Value, EncodingError> {
-        let s = value
-            .as_str()
-            .ok_or_else(|| EncodingError::Message("hex.encode expects a string".to_string()))?;
-        let encoded = hex::encode(s.as_bytes());
-        Ok(Value::String(encoded))
-    }
-
-    fn decode(&self, value: &Value) -> Result<Value, EncodingError> {
-        let s = value
-            .as_str()
-            .ok_or_else(|| EncodingError::Message("hex.decode expects a string".to_string()))?;
-        let decoded =
-            hex::decode(s).map_err(|e| EncodingError::Message(format!("hex decode error: {e}")))?;
-        let out = String::from_utf8(decoded)
-            .map_err(|e| EncodingError::Message(format!("hex decode is not valid utf-8: {e}")))?;
-        Ok(Value::String(out))
-    }
-}
 
 // ---------------------------------------------------------------------------
 // Function impls (the handls — Rust bodies for the `op` declarations)

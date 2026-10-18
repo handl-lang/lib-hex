@@ -1,0 +1,48 @@
+--- `hex.encode` — part of `hex`, the pure-Handl hex codec.
+
+DIGITS := "0123456789abcdef"
+
+--- Lowercase hex encoding of the UTF-8 bytes of `s`.
+---
+--- @param {s} - the input string
+--- @returns {String - hex string, two lowercase digits per byte}
+--- @example
+--- `hex.encode("hi")`
+--- -- => "6869"
+---
+export encode := (s) ~> do {
+  acc := ""
+  for b in bytes.to_list(bytes.utf8_encode(s)) { do {
+    acc := acc + char.at(DIGITS, math.shr(b, 4)) + char.at(DIGITS, math.bit_and(b, 15))
+  } }
+  acc
+}
+
+--- `hex.decode` — pure-Handl hex decoding.
+DIGITS := "0123456789abcdef"
+
+export decode := (s) ~> do {
+  out := []
+  hi := -1
+  for c in char.chars(s) { do {
+    v := str.find(DIGITS, c)
+    if v < 0 { throw "hex.decode: invalid hex digit" } else { do {} }
+    if hi < 0 { do { hi := v } } else { do {
+      out := [...out, math.bit_or(math.shl(hi, 4), v)]
+      hi := -1
+    } }
+  } }
+  if hi < 0 { do {} } else { throw "hex.decode: odd number of digits" }
+  bytes.utf8_decode(bytes.from_list(out))
+}
+
+--- hex.encode -- encode a string to hexadecimal.
+--- hex.decode -- decode a hexadecimal string.
+cap "hex.encode"
+cap "hex.decode"
+op "hex.encode" : String -> String
+  guarantee: IsHex(output)
+op "hex.decode" : String -> String
+  guarantee: True
+
+--- pure-handl impls (the module arrows):

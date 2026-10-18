@@ -1,0 +1,17 @@
+--- `hex.decode` — pure-Handl hex decoding.
+DIGITS := "0123456789abcdef"
+
+export decode := (s) ~> do {
+  out := []
+  hi := -1
+  for c in char.chars(s) { do {
+    v := str.find(DIGITS, c)
+    if v < 0 { throw "hex.decode: invalid hex digit" } else { do {} }
+    if hi < 0 { do { hi := v } } else { do {
+      out := [...out, math.bit_or(math.shl(hi, 4), v)]
+      hi := -1
+    } }
+  } }
+  if hi < 0 { do {} } else { throw "hex.decode: odd number of digits" }
+  bytes.utf8_decode(bytes.from_list(out))
+}

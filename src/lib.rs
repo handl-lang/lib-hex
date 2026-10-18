@@ -1,7 +1,5 @@
-//! `hex` — Handl stdlib codec (`src/index.hnl`).
-//!
-//! Transitional: the ops are Rust until plan `stdlib-lib-migration` Phase 7
-//! rewrites them as `ffi.call`.
+//! `hex` — hex codec. Impl is now pure-handl (`src/encode.hnl`, `src/decode.hnl`);
+//! the Rust handls below remain until consumers switch to the `.hnl` module.
 
 pub const HEX_HNL: &str = include_str!("index.hnl");
 

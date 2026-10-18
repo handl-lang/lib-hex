@@ -1,0 +1,19 @@
+--- `hex.encode` — part of `hex`, the pure-Handl hex codec.
+
+DIGITS := "0123456789abcdef"
+
+--- Lowercase hex encoding of the UTF-8 bytes of `s`.
+---
+--- @param {s} - the input string
+--- @returns {String - hex string, two lowercase digits per byte}
+--- @example
+--- `hex.encode("hi")`
+--- -- => "6869"
+---
+export encode := (s) ~> do {
+  acc := ""
+  for b in bytes.to_list(bytes.utf8_encode(s)) { do {
+    acc := acc + char.at(DIGITS, math.shr(b, 4)) + char.at(DIGITS, math.bit_and(b, 15))
+  } }
+  acc
+}

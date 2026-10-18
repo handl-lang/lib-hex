@@ -1,0 +1,9 @@
+from "./index" import * as m
+
+test_encode_empty := assert m.encode("") = ""
+test_encode_hello := assert m.encode("hello") = "68656c6c6f"
+test_encode_hi := assert m.encode("hi") = "6869"
+test_decode_empty := assert m.decode("") = ""
+test_decode_hi := assert m.decode("6869") = "hi"
+test_roundtrip := assert m.decode(m.encode("hello world!")) = "hello world!"
+test_roundtrip_utf8 := assert m.decode(m.encode("héllo")) = "héllo"

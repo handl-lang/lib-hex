@@ -1,0 +1,26 @@
+name: handl-lib-hex
+path: Cargo.toml
+purpose: 'hex: Handl stdlib codec (ADR-0128 split).'
+api:
+- name: handl-lib-hex
+  kind: module
+  file: Cargo.toml
+  line: 1
+  module: handl-lib-hex
+deps:
+- handl-lib-encoding
+- handl-platform
+- handl-plugin-lib-handl
+- hex
+- serde_json
+notes: ''
+verify:
+- Cargo.toml
+provenance:
+  files:
+  - Cargo.toml
+  hashes:
+  - 3e1ebe8e78a1e8ed7e4155fc57baf792e70cbf4d
+  commit_sha: 93d86c97e2703dd7707171203284aa8821f43077
+  generated_at: '1792281224'
+  generator: kuda-template/0.1.0

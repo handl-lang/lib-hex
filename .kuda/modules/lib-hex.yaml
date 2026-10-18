@@ -1,0 +1,164 @@
+name: lib-hex
+path: src/ops.rs
+purpose: lib-hex
+api:
+- name: HEX_OPS
+  kind: const
+  file: src/ops.rs
+  line: 12
+  module: lib-hex
+- name: HexEncode
+  kind: type
+  file: src/ops.rs
+  line: 27
+  module: lib-hex
+- name: call
+  kind: function
+  file: src/ops.rs
+  line: 30
+  module: lib-hex
+- name: HexDecode
+  kind: type
+  file: src/ops.rs
+  line: 51
+  module: lib-hex
+- name: call
+  kind: function
+  file: src/ops.rs
+  line: 54
+  module: lib-hex
+- name: HexGuaranteeChecker
+  kind: type
+  file: src/ops.rs
+  line: 89
+  module: lib-hex
+- name: check_requires
+  kind: function
+  file: src/ops.rs
+  line: 92
+  module: lib-hex
+- name: check_guarantee
+  kind: function
+  file: src/ops.rs
+  line: 97
+  module: lib-hex
+- name: hex_op_registry
+  kind: function
+  file: src/ops.rs
+  line: 123
+  module: lib-hex
+- name: HexName
+  kind: type
+  file: src/ops.rs
+  line: 136
+  module: lib-hex
+- name: call
+  kind: function
+  file: src/ops.rs
+  line: 139
+  module: lib-hex
+- name: Hex
+  kind: type
+  file: src/codec.rs
+  line: 9
+  module: lib-hex
+- name: encode
+  kind: function
+  file: src/codec.rs
+  line: 12
+  module: lib-hex
+- name: decode
+  kind: function
+  file: src/codec.rs
+  line: 19
+  module: lib-hex
+- name: register
+  kind: function
+  file: src/codec.rs
+  line: 32
+  module: lib-hex
+- name: HEX_HNL
+  kind: const
+  file: src/lib.rs
+  line: 6
+  module: lib-hex
+- name: codec
+  kind: module
+  file: src/lib.rs
+  line: 8
+  module: lib-hex
+- name: ops
+  kind: module
+  file: src/lib.rs
+  line: 9
+  module: lib-hex
+deps:
+- handl_platform
+- handl_plugin_lib_handl
+- serde_json
+- handl_lib_encoding
+- serde_json
+- codec
+- ops
+notes: ''
+verify:
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/ops.rs
+- src/codec.rs
+- src/codec.rs
+- src/codec.rs
+- src/codec.rs
+- src/lib.rs
+- src/lib.rs
+- src/lib.rs
+provenance:
+  files:
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/ops.rs
+  - src/codec.rs
+  - src/codec.rs
+  - src/codec.rs
+  - src/codec.rs
+  - src/lib.rs
+  - src/lib.rs
+  - src/lib.rs
+  hashes:
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - 94623c0518a67edf83b74bd99bc7840a4d667c53
+  - 94623c0518a67edf83b74bd99bc7840a4d667c53
+  - 94623c0518a67edf83b74bd99bc7840a4d667c53
+  - 94623c0518a67edf83b74bd99bc7840a4d667c53
+  - d78cd5d16b8c8a832f01a9d57f0463158f03a33b
+  - d78cd5d16b8c8a832f01a9d57f0463158f03a33b
+  - d78cd5d16b8c8a832f01a9d57f0463158f03a33b
+  commit_sha: 93d86c97e2703dd7707171203284aa8821f43077
+  generated_at: '1792281224'
+  generator: kuda-template/0.1.0

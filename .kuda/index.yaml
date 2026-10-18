@@ -1,0 +1,23 @@
+name: lib-hex
+root: /home/luis/GitHub/handl-lang/lib-hex
+purpose: ''
+modules:
+- handl-lib-hex
+- lib-hex
+commands:
+- cargo check
+- cargo test --workspace
+provenance:
+  files:
+  - Cargo.toml
+  - src/ops.rs
+  - src/codec.rs
+  - src/lib.rs
+  hashes:
+  - 3e1ebe8e78a1e8ed7e4155fc57baf792e70cbf4d
+  - f66a60a4946f246dc8dc6b282834678b449463e7
+  - 94623c0518a67edf83b74bd99bc7840a4d667c53
+  - d78cd5d16b8c8a832f01a9d57f0463158f03a33b
+  commit_sha: 93d86c97e2703dd7707171203284aa8821f43077
+  generated_at: '1792281224'
+  generator: kuda/0.1.0

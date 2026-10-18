@@ -10,3 +10,7 @@ op "hex.decode" : String -> String
 --- pure-handl impls (the module arrows):
 from "./encode.hnl" export encode
 from "./decode.hnl" export decode
+
+cap "hex.codec"
+op "hex.codec" : () -> Value
+export codec := () ~> ({ "type": "codec", "name": "hex", "encode": encode, "decode": decode })

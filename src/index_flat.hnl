@@ -13,7 +13,7 @@ DIGITS := "0123456789abcdef"
 hex_encode := (s) ~> do {
   acc := ""
   for b in bytes.to_list(bytes.utf8_encode(s)) { do {
-    acc := acc + char.at(DIGITS, math.shr(b, 4)) + char.at(DIGITS, math.bit_and(b, 15))
+    acc := acc + str.char_at(DIGITS, math.shr(b, 4)) + str.char_at(DIGITS, math.bit_and(b, 15))
   } }
   acc
 }
@@ -22,16 +22,25 @@ hex_encode := (s) ~> do {
 DIGITS := "0123456789abcdef"
 
 hex_decode := (s) ~> do {
-  out := []
-  hi := -1
-  for c in char.chars(s) { do {
-    v := str.find(DIGITS, c)
-    if v < 0 { throw "hex.decode: invalid hex digit" } else { do {} }
-    if hi < 0 { do { hi := v } } else { do {
-      out := [...out, math.bit_or(math.shl(hi, 4), v)]
-      hi := -1
-    } }
-  } }
+  -- `char` is a host-supplied axiom module, not a table module, so it is
+  -- unreachable in the table-resolved envs: iterate by index via
+  -- `str.length`/`str.char_at` (the native `str` ops) instead of
+  -- `char.chars`.
+  r :: while { i: 0, out: [], hi: -1 } {
+    [i, out, hi] ~>
+      if i >= str.length(s) { { out: [out, hi] } } else { do {
+        c := str.char_at(s, i)
+        v := str.find(DIGITS, c)
+        if v < 0 { throw "hex.decode: invalid hex digit" } else { do {} }
+        if hi < 0 {
+          { state: { i: i + 1, out: out, hi: v } }
+        } else {
+          { state: { i: i + 1, out: [...out, math.bit_or(math.shl(hi, 4), v)], hi: -1 } }
+        }
+      } }
+  }
+  out := r[0]
+  hi := r[1]
   if hi < 0 { do {} } else { throw "hex.decode: odd number of digits" }
   bytes.utf8_decode(bytes.from_list(out))
 }

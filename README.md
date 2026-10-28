@@ -12,3 +12,7 @@ src/ops.rs      the Rust atoms
 pkg.hnl         { modules: ["hex"] }
 ci.sh           bupha entry
 ```
+
+## License
+
+MIT.

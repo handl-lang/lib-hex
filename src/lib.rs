@@ -5,11 +5,11 @@ pub const HEX_HNL: &str = include_str!("index.hnl");
 
 pub mod ops;
 
-pub use ops::{hex_op_registry, HEX_OPS};
+pub use ops::{HEX_OPS, hex_op_registry};
 
 /// `.hnl` package source set — index + sibling files (wired into kits via
 /// `handl_module_from_sources`).
-pub const HEX_FUNCS: &[&str] = &["encode","decode","codec"];
+pub const HEX_FUNCS: &[&str] = &["encode", "decode", "codec"];
 pub const HEX_SOURCES: &[(&str, &str, &[&str])] = &[
     ("encode", include_str!("encode.hnl"), &["encode"]),
     ("decode", include_str!("decode.hnl"), &["decode"]),

@@ -1,7 +1,6 @@
 use std::sync::Arc;
 
-use handl_platform::{EvalContext, EvalError, Function};
-use handl_plugin_lib_handl::{OpRegistry, RuntimePredicateChecker};
+use handl_ops::{Op, OpContext, OpError, OpRegistry, RuntimePredicateChecker};
 use serde_json::Value;
 
 /// The handl source declaring the hex `op` interface — the single source
@@ -26,10 +25,10 @@ pub const HEX_OPS: &[&str] = &["hex.encode", "hex.decode", "hex.hex"];
 #[derive(Debug, Clone, Copy)]
 pub struct HexEncode;
 
-impl Function for HexEncode {
-    fn call(&self, args: &[Value], _ctx: &mut EvalContext) -> Result<Value, EvalError> {
+impl Op for HexEncode {
+    fn call(&self, args: &[Value], _ctx: &mut dyn OpContext) -> Result<Value, OpError> {
         if args.len() != 1 {
-            return Err(EvalError::TypeMismatch(format!(
+            return Err(OpError::TypeMismatch(format!(
                 "expected {} args, got {}",
                 1,
                 args.len()
@@ -37,7 +36,7 @@ impl Function for HexEncode {
         }
         let s = args[0]
             .as_str()
-            .ok_or_else(|| EvalError::Other("hex.encode expects a string".to_string()))?;
+            .ok_or_else(|| OpError::Other("hex.encode expects a string".to_string()))?;
         let encoded = hex::encode(s.as_bytes());
         Ok(Value::String(encoded))
     }
@@ -50,10 +49,10 @@ impl Function for HexEncode {
 #[derive(Debug, Clone, Copy)]
 pub struct HexDecode;
 
-impl Function for HexDecode {
-    fn call(&self, args: &[Value], _ctx: &mut EvalContext) -> Result<Value, EvalError> {
+impl Op for HexDecode {
+    fn call(&self, args: &[Value], _ctx: &mut dyn OpContext) -> Result<Value, OpError> {
         if args.len() != 1 {
-            return Err(EvalError::TypeMismatch(format!(
+            return Err(OpError::TypeMismatch(format!(
                 "expected {} args, got {}",
                 1,
                 args.len()
@@ -61,11 +60,11 @@ impl Function for HexDecode {
         }
         let s = args[0]
             .as_str()
-            .ok_or_else(|| EvalError::Other("hex.decode expects a string".to_string()))?;
+            .ok_or_else(|| OpError::Other("hex.decode expects a string".to_string()))?;
         let decoded =
-            hex::decode(s).map_err(|e| EvalError::Other(format!("hex decode error: {e}")))?;
+            hex::decode(s).map_err(|e| OpError::Other(format!("hex decode error: {e}")))?;
         let out = String::from_utf8(decoded)
-            .map_err(|e| EvalError::Other(format!("hex decode is not valid utf-8: {e}")))?;
+            .map_err(|e| OpError::Other(format!("hex decode is not valid utf-8: {e}")))?;
         Ok(Value::String(out))
     }
 }
@@ -135,14 +134,14 @@ pub fn hex_op_registry() -> OpRegistry {
 #[derive(Debug, Clone, Copy)]
 pub struct HexName;
 
-impl Function for HexName {
+impl Op for HexName {
     fn call(
         &self,
         args: &[serde_json::Value],
-        _ctx: &mut EvalContext,
-    ) -> Result<serde_json::Value, EvalError> {
+        _ctx: &mut dyn OpContext,
+    ) -> Result<serde_json::Value, OpError> {
         if !args.is_empty() {
-            return Err(EvalError::TypeMismatch(format!(
+            return Err(OpError::TypeMismatch(format!(
                 "expected {} args, got {}",
                 0,
                 args.len(),

@@ -3,14 +3,19 @@
 `hex` — Handl stdlib codec. Implements the `Encoding` trait from
 `lib-encoding`; the `.hnl` surface lives in `src/index.hnl`.
 
-Part of the stdlib → `lib-*` split (ADR-0128). History is a `git subtree split`
-of `stdlib/handl-packages/hex/`.
+## Layout
 
 ```text
 src/index.hnl   the interface
 src/ops.rs      the Rust atoms
-pkg.hnl         { modules: ["hex"] }
+pkg.hnl         package manifest — modules, deps, description, license
 ci.sh           bupha entry
+```
+
+## Gate
+
+```bash
+HNL=../host-cli/target/debug/hnl scripts/hnl-gate.sh
 ```
 
 ## License

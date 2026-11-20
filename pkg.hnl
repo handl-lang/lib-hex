@@ -1,1 +1,1 @@
-{ modules: ["hex"] }
+{ modules: ["hex"], description: "Handl stdlib hex codec.", license: "MIT" }

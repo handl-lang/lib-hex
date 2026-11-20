@@ -2,9 +2,11 @@
 name = "handl-lib-hex"
 version = "0.1.0"
 edition = "2024"
-description = "hex: Handl stdlib codec (ADR-0128 split)."
-license = "MIT OR Apache-2.0"
+description = "hex: Handl stdlib codec."
+license = "MIT"
 repository = "https://github.com/handl-lang/lib-hex"
+homepage = "https://github.com/handl-lang/lib-hex"
+readme = "README.md"
 
 [dependencies]
 handl-ops = { git = "https://github.com/handl-lang/kernel", branch = "main" }

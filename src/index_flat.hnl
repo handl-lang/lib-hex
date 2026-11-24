@@ -26,7 +26,7 @@ hex_decode := (s) ~> do {
   -- unreachable in the table-resolved envs: iterate by index via
   -- `str.length`/`str.char_at` (the native `str` ops) instead of
   -- `char.chars`.
-  r :: while { i: 0, out: [], hi: -1 } {
+  r := while { i: 0, out: [], hi: -1 } {
     [i, out, hi] ~>
       if i >= str.length(s) { { out: [out, hi] } } else { do {
         c := str.char_at(s, i)

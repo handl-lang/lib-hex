@@ -1,23 +1,23 @@
 name: lib-hex
 root: /home/luis/GitHub/handl-lang/lib-hex
-purpose: ''
+purpose: '`hex` — Handl stdlib codec. Implements the `Encoding` trait from'
 modules:
 - handl-lib-hex
-- lib-hex
+- xtask
 commands:
 - cargo check
 - cargo test --workspace
+tree_digest: a61416559e1a264089f462eac0df13153df42b5e
+files_total: 5
 provenance:
   files:
   - Cargo.toml
-  - src/ops.rs
-  - src/codec.rs
-  - src/lib.rs
+  - README.md
+  - xtask/Cargo.toml
   hashes:
-  - 3e1ebe8e78a1e8ed7e4155fc57baf792e70cbf4d
-  - f66a60a4946f246dc8dc6b282834678b449463e7
-  - 94623c0518a67edf83b74bd99bc7840a4d667c53
-  - d78cd5d16b8c8a832f01a9d57f0463158f03a33b
-  commit_sha: 93d86c97e2703dd7707171203284aa8821f43077
-  generated_at: '1792281224'
+  - 914f0f2f4ce1727b6b33c936b6a0a9909ea60605
+  - 299554cb9ec07c00b2fdb0b1099e0eee8f41c2cf
+  - 56825fa02f4bcfa4409922455217615ea0d9d5f0
+  commit_sha: a4df80c6dc574256cc1d85e13adc3d342c7716a2
+  generated_at: '1795484421'
   generator: kuda/0.1.0

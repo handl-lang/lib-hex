@@ -1,26 +1,113 @@
 name: handl-lib-hex
 path: Cargo.toml
-purpose: 'hex: Handl stdlib codec (ADR-0128 split).'
+purpose: 'hex: Handl stdlib codec.'
 api:
+- name: HEX_FLAT_HNL
+  kind: const
+  file: src/lib.rs
+  line: 19
+  module: handl-lib-hex
+- name: HEX_FUNCS
+  kind: const
+  file: src/lib.rs
+  line: 12
+  module: handl-lib-hex
+- name: HEX_HNL
+  kind: const
+  file: src/lib.rs
+  line: 4
+  module: handl-lib-hex
+- name: HEX_OPS
+  kind: const
+  file: src/ops.rs
+  line: 11
+  module: handl-lib-hex
+- name: HEX_SOURCES
+  kind: const
+  file: src/lib.rs
+  line: 13
+  module: handl-lib-hex
+- name: HexDecode
+  kind: type
+  file: src/ops.rs
+  line: 50
+  module: handl-lib-hex
+- name: HexEncode
+  kind: type
+  file: src/ops.rs
+  line: 26
+  module: handl-lib-hex
+- name: HexGuaranteeChecker
+  kind: type
+  file: src/ops.rs
+  line: 88
+  module: handl-lib-hex
+- name: HexName
+  kind: type
+  file: src/ops.rs
+  line: 135
+  module: handl-lib-hex
+- name: call
+  kind: function
+  file: src/ops.rs
+  line: 29
+  module: handl-lib-hex
+- name: call
+  kind: function
+  file: src/ops.rs
+  line: 53
+  module: handl-lib-hex
+- name: call
+  kind: function
+  file: src/ops.rs
+  line: 138
+  module: handl-lib-hex
+- name: check_guarantee
+  kind: function
+  file: src/ops.rs
+  line: 96
+  module: handl-lib-hex
+- name: check_requires
+  kind: function
+  file: src/ops.rs
+  line: 91
+  module: handl-lib-hex
 - name: handl-lib-hex
   kind: module
   file: Cargo.toml
   line: 1
   module: handl-lib-hex
+- name: hex_op_registry
+  kind: function
+  file: src/ops.rs
+  line: 122
+  module: handl-lib-hex
+- name: ops
+  kind: module
+  file: src/lib.rs
+  line: 6
+  module: handl-lib-hex
 deps:
-- handl-lib-encoding
-- handl-platform
-- handl-plugin-lib-handl
+- handl-ops
 - hex
 - serde_json
+- handl_ops
+- serde_json
+- ops
 notes: ''
 verify:
 - Cargo.toml
+- src/lib.rs
+- src/ops.rs
 provenance:
   files:
   - Cargo.toml
+  - src/lib.rs
+  - src/ops.rs
   hashes:
-  - 3e1ebe8e78a1e8ed7e4155fc57baf792e70cbf4d
-  commit_sha: 93d86c97e2703dd7707171203284aa8821f43077
-  generated_at: '1792281224'
-  generator: kuda-template/0.1.0
+  - 914f0f2f4ce1727b6b33c936b6a0a9909ea60605
+  - cefcef9829ba2a05533edcce57487b2fa6cbd4d5
+  - 4f182ced1c1cd6cd7f84d1d67528e4a4265a5581
+  commit_sha: a4df80c6dc574256cc1d85e13adc3d342c7716a2
+  generated_at: '1795484421'
+  generator: kuda-template/0.1.4

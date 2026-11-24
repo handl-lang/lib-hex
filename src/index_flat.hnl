@@ -49,9 +49,9 @@ hex_decode := (s) ~> do {
 --- hex.decode -- decode a hexadecimal string.
 cap "hex.encode"
 cap "hex.decode"
-op "hex.encode" : String -> String
+op "hex.encode" : String ~> String
   guarantee: IsHex(output)
-op "hex.decode" : String -> String
+op "hex.decode" : String ~> String
   guarantee: True
 
 --- pure-handl impls (the module arrows):

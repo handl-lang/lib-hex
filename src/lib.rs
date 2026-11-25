@@ -1,11 +1,10 @@
-//! `hex` — hex codec. Impl is now pure-handl (`src/encode.hnl`, `src/decode.hnl`);
-//! the Rust handls below remain until consumers switch to the `.hnl` module.
+//! `hex` — hex codec. Pure-handl impl (`src/encode.hnl`, `src/decode.hnl`,
+//! flattened in `src/index_flat.hnl`); the legacy Rust handls (`ops.rs`)
+//! were pruned after parity — every consumer now loads the `.hnl` module
+//! (plugin-lib-stdlib package table + handl-kit-stdlib).
 
+/// The handl source declaring the hex `op` interface.
 pub const HEX_HNL: &str = include_str!("index.hnl");
-
-pub mod ops;
-
-pub use ops::{HEX_OPS, hex_op_registry};
 
 /// `.hnl` package source set — index + sibling files (wired into kits via
 /// `handl_module_from_sources`).

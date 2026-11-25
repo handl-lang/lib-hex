@@ -1,3 +1,33 @@
+# lib-hex
+
+`hex` — Handl stdlib hex codec implementing the `Encoding` trait from
+`lib-encoding`. Hybrid package: `.hnl` surface plus Rust atoms.
+
+## Layout
+
+| path | role |
+| --- | --- |
+| `src/index.hnl`, `src/index_flat.hnl` | the `.hnl` interface |
+| `src/encode.hnl`, `src/decode.hnl` | codec arrows |
+| `src/hex.test.hnl` | `.hnl` tests |
+| `src/lib.rs` | Rust atoms |
+| `Cargo.toml`, `xtask/` | Rust crate + vendored repo gate |
+| `pkg.hnl`, `scripts/hnl-gate.sh` | manifest + `.hnl` gate |
+| `workflows/gate.yaml` | CI — shared `handl-gates` campaign |
+
+## Contract
+
+- Implements `lib-encoding`'s `Encoding` trait — same contract as
+  `lib-base64`; keep the two codecs symmetric.
+- `.hnl` gated by `hnl-gate.sh`; Rust side by `cargo xtask gate`.
+
+## Verification
+
+```bash
+HNL=../host-cli/target/debug/hnl scripts/hnl-gate.sh
+cargo xtask gate
+```
+
 <!-- myco:agent-awareness -->
 
 ## Agent awareness

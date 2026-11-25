@@ -9,7 +9,7 @@
 src/index.hnl   the interface
 src/ops.rs      the Rust atoms
 pkg.hnl         package manifest — modules, deps, description, license
-ci.sh           bupha entry
+workflows/gate.yaml           bupha entry (handl-gates)
 ```
 
 ## Gate

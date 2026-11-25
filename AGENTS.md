@@ -1,7 +1,7 @@
 # lib-hex
 
 `hex` — Handl stdlib hex codec implementing the `Encoding` trait from
-`lib-encoding`. Hybrid package: `.hnl` surface plus Rust atoms.
+`lib-encoding`. Package: `.hnl` surface plus a const-only Rust shim crate (ops pruned post-parity).
 
 ## Layout
 
@@ -10,7 +10,7 @@
 | `src/index.hnl`, `src/index_flat.hnl` | the `.hnl` interface |
 | `src/encode.hnl`, `src/decode.hnl` | codec arrows |
 | `src/hex.test.hnl` | `.hnl` tests |
-| `src/lib.rs` | Rust atoms |
+| `src/lib.rs` | const-only shim re-exporting the `.hnl` sources |
 | `Cargo.toml`, `xtask/` | Rust crate + vendored repo gate |
 | `pkg.hnl`, `scripts/hnl-gate.sh` | manifest + `.hnl` gate |
 | `workflows/gate.yaml` | CI — shared `handl-gates` campaign |
@@ -19,7 +19,7 @@
 
 - Implements `lib-encoding`'s `Encoding` trait — same contract as
   `lib-base64`; keep the two codecs symmetric.
-- `.hnl` gated by `hnl-gate.sh`; Rust side by `cargo xtask gate`.
+- `.hnl` gated by `hnl-gate.sh`; the shim crate by `cargo xtask gate`.
 
 ## Verification
 
